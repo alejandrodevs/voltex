@@ -1,4 +1,4 @@
-require "voltex/engine"
+require 'voltex/engine'
 
 module Voltex
 end

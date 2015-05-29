@@ -1,22 +1,19 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
+require 'voltex/version'
 
-# Maintain your gem's version:
-require "voltex/version"
-
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "voltex"
+  s.name        = 'voltex'
   s.version     = Voltex::VERSION
-  s.authors     = ["ErickFabian"]
-  s.email       = ["fabianerickalfonso@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Voltex."
-  s.description = "TODO: Description of Voltex."
-  s.license     = "MIT"
+  s.authors     = ['Erick Fabian', 'Alejandro Gutiérrez']
+  s.email       = ['fabianerickalfonso@gmail.com', 'alejandrodevs@gmail.com']
+  s.homepage    = ''
+  s.summary     = 'Dynamic permissions authorization.'
+  s.description = 'This engine aims to provide an easy way to work with dynamic permissions.'
+  s.license     = 'MIT'
+  s.files       = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-
-  s.add_dependency "rails", "~> 4.2.1"
-
-  s.add_development_dependency "sqlite3"
+  s.add_dependency 'rails', '~> 4.2.1'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency 'shoulda-matchers', '~> 2.8.0'
 end
