@@ -10,6 +10,13 @@ module ActiveRecord
       private
 
       def model_content
+        "# Voltex.
+         # Please review the following content.
+         has_and_belongs_to_many :#{roles}"
+      end
+
+      def roles
+        Voltex.role_class.parameterize('_').pluralize
       end
     end
   end

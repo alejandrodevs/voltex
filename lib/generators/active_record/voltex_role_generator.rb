@@ -10,6 +10,18 @@ module ActiveRecord
       private
 
       def model_content
+        "# Voltex.
+         # Please review the following content.
+         has_many :#{users}
+         has_and_belongs_to_many :#{permissions}"
+      end
+
+      def users
+        Voltex.user_class.parameterize('_').pluralize
+      end
+
+      def permissions
+        Voltex.permission_class.parameterize('_').pluralize
       end
     end
   end
