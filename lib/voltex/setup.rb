@@ -4,13 +4,13 @@ module Voltex
     @@user_class = 'User'
 
     mattr_accessor :role_class
-    @@user_class = 'Role'
+    @@role_class = 'Role'
 
     mattr_accessor :permission_class
-    @@user_class = 'Permission'
+    @@permission_class = 'Permission'
 
     def setup
-      yield if block_given?
+      yield(self) if block_given?
     end
   end
 end
