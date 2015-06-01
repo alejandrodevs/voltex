@@ -13,15 +13,15 @@ module ActiveRecord
         "# Voltex.
          # Please review the following content.
          belongs_to :#{role}
-         has_many :#{permissions}, through: #{role}"
+         has_many :#{permissions}, through: :#{role}"
       end
 
       def role
-        Voltex.role_class.parameterize('_')
+        Voltex.role_class.underscore.parameterize('_')
       end
 
       def permissions
-        Voltex.permission_class.parameterize('_').pluralize
+        Voltex.permission_class.underscore.parameterize('_').pluralize
       end
     end
   end

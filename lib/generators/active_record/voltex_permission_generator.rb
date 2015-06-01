@@ -16,7 +16,7 @@ module ActiveRecord
       end
 
       def roles
-        Voltex.role_class.parameterize('_').pluralize
+        Voltex.role_class.underscore.parameterize('_').pluralize
       end
     end
   end

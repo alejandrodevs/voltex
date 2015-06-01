@@ -7,7 +7,7 @@ module ActiveRecord
         argument :attributes, type: :array, default: []
 
         def copy_migration
-          model_exists? ? existing_migration : new_migration
+          table_exists? ? existing_migration : new_migration
         end
 
         def generate_model
@@ -17,7 +17,7 @@ module ActiveRecord
         end
 
         def add_model_content
-          inject_into_class(model_path, class_name, sanitized_content) if model_exists?
+          inject_into_class(model_path, name, sanitized_content) if model_exists?
         end
 
         private
@@ -46,8 +46,12 @@ module ActiveRecord
           false
         end
 
+        def table_exists?
+          ActiveRecord::Base.connection.table_exists? table_name
+        end
+
         def full_file_path
-          class_name.split('::').join('/').downcase
+          class_name.split('::').join('/').underscore.downcase
         end
       end
     end

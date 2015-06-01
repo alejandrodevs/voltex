@@ -17,11 +17,11 @@ module ActiveRecord
       end
 
       def users
-        Voltex.user_class.parameterize('_').pluralize
+        Voltex.user_class.underscore.parameterize('_').pluralize
       end
 
       def permissions
-        Voltex.permission_class.parameterize('_').pluralize
+        Voltex.permission_class.underscore.parameterize('_').pluralize
       end
     end
   end

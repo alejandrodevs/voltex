@@ -9,6 +9,10 @@ module Voltex
     mattr_accessor :permission_class
     @@permission_class = 'Permission'
 
+    def permission_role_class
+      [permission_class, role_class].sort.join
+    end
+
     def setup
       yield(self) if block_given?
     end
