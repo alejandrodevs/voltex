@@ -12,11 +12,16 @@ module ActiveRecord
       def model_content
         "# Voltex.
          # Please review the following content.
-         belongs_to :#{role}"
+         belongs_to :#{role}
+         has_many :#{permissions}, through: #{role}"
       end
 
       def role
         Voltex.role_class.parameterize('_')
+      end
+
+      def permissions
+        Voltex.permission_class.parameterize('_').pluralize
       end
     end
   end
