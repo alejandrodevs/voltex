@@ -19,7 +19,7 @@ This engine aims to provide an easy way to work with dynamic permissions.
 
     ```ruby
     Voltex.setup do |config|
-      # Configurable options should be here.
+      # Configurable voltex classes.
       # config.user_class = 'User'
       # config.role_class = 'Role'
       # config.permission_class = 'Permission'
