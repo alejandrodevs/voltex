@@ -8,5 +8,6 @@ Feature: Default permissions
     And I successfully run `bundle exec rake db:migrate`
 
   Scenario: Creates default permissions
-    Given I generate models named "Post Comment Product Payment"
+    Given I generate models named "Post Comment Product"
     When I successfully run `bundle exec rake voltex`
+    Then I have "index show create update destroy" permissions for "Post Comment Product"

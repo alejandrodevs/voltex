@@ -5,6 +5,9 @@ When 'I generate a new rails application' do
     And I add to Gemfile "gem 'sqlite3'"
     And I install gems
   }
+
+  $LOAD_PATH.unshift(File.join(APP_ROOT))
+  require File.expand_path(APP_ROOT + '/config/environment', __FILE__)
 end
 
 When /^I configure the application to use voltex$/ do
@@ -41,5 +44,15 @@ When /^I generate models named "([^\"]+)"$/ do |models|
       end
       """
     }
+  end
+end
+
+When /^I have "([^\"]+)" permissions for "([^\"]+)"$/ do |actions, resources|
+  resources.split(' ').each do |resource|
+    actions.split(' ').each do |action|
+      Voltex.permission_class.constantize.where(
+        resource: resource, action: action
+      ).exists?.should be true
+    end
   end
 end
