@@ -1,5 +1,8 @@
 module Voltex
   module Setup
+    mattr_accessor :actions
+    @@actions = %w(index show create update destroy)
+
     mattr_accessor :user_class
     @@user_class = 'User'
 
@@ -12,6 +15,12 @@ module Voltex
     def permission_role_class
       [permission_class, role_class].sort.join
     end
+
+    mattr_accessor :exclude
+    @@exclude = []
+
+    mattr_accessor :include
+    @@include = []
 
     def setup
       yield(self) if block_given?

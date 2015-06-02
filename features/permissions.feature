@@ -1,4 +1,6 @@
 Feature: Default permissions
+  This feature creates permissions for actions index, show, create,
+  update, destroy for each the resources (models) in parent application.
 
   Background:
     When I generate a new rails application

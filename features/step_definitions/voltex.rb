@@ -47,12 +47,12 @@ When /^I generate models named "([^\"]+)"$/ do |models|
   end
 end
 
-When /^I have "([^\"]+)" permissions for "([^\"]+)"$/ do |actions, resources|
+When /^I have (not )?"([^\"]+)" permissions for "([^\"]+)"$/ do |match, actions, resources|
   resources.split(' ').each do |resource|
     actions.split(' ').each do |action|
       Voltex.permission_class.constantize.where(
         resource: resource, action: action
-      ).exists?.should be true
+      ).exists?.should be !match
     end
   end
 end
