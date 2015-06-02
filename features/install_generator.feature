@@ -11,7 +11,7 @@ Feature: Install generator
     Then the file "config/initializers/voltex.rb" should contain:
     """
     Voltex.setup do |config|
-      # Configurable voltex classes.
+      # Voltex classes configuration.
       # config.user_class = 'User'
       # config.role_class = 'Role'
       # config.permission_class = 'Permission'

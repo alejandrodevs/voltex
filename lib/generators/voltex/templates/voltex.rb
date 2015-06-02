@@ -1,5 +1,5 @@
 Voltex.setup do |config|
-  # Configurable voltex classes.
+  # Voltex classes configuration.
   # config.user_class = 'User'
   # config.role_class = 'Role'
   # config.permission_class = 'Permission'
