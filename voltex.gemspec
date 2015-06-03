@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.2'
   s.add_development_dependency 'cucumber', '~> 2.0.0'
   s.add_development_dependency 'aruba', '~> 0.6.2'
+  s.add_development_dependency 'cancan', '~> 1.6.10'
 end

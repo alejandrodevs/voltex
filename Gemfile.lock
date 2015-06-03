@@ -48,6 +48,7 @@ GEM
       cucumber (>= 1.1.1)
       rspec-expectations (>= 2.7.0)
     builder (3.2.2)
+    cancan (1.6.10)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     cucumber (2.0.0)
@@ -141,6 +142,7 @@ PLATFORMS
 
 DEPENDENCIES
   aruba (~> 0.6.2)
+  cancan (~> 1.6.10)
   cucumber (~> 2.0.0)
   rspec-rails (~> 3.2)
   sqlite3

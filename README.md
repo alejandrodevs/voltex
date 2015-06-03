@@ -67,3 +67,20 @@ class PostPolicy
   end
 end
 ```
+
+
+## Using Voltex with CanCan
+Include voltex in your ability class.
+```ruby
+require 'voltex/cancan/ability'
+
+class Ability
+  include CanCan::Ability
+  include Voltex::CanCan::Ability
+
+  def initialize(user)
+    define_voltex_abilities(user)
+    ...
+  end
+end
+```
