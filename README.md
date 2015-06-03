@@ -29,6 +29,8 @@ This engine aims to provide an easy way to work with dynamic permissions.
       # config.user_class = 'User'
       # config.role_class = 'Role'
       # config.permission_class = 'Permission'
+      ...
+    end
     ```
 
 4. Generate voltex resources.
