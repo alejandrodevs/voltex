@@ -113,3 +113,14 @@ And run voltex rake task again:
 ```
 bundle exec rake voltex
 ```
+
+
+## Defining role permissions
+Mount voltex engine in your application:
+```ruby
+Rails.application.routes.draw do
+  mount Voltex::Engine => '/voltex'
+end
+```
+This will define a route `/voltex/roles/:id/edit` where
+permissions can be defined for each role.
