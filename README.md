@@ -85,3 +85,31 @@ class Ability
   end
 end
 ```
+
+
+## Including and Excluding permissions
+Update your voltex initializer:
+```ruby
+Voltex.setup do |config|
+  # Voltex classes configuration.
+  # config.user_class = 'User'
+  # config.role_class = 'Role'
+  # config.permission_class = 'Permission'
+  #
+  # Excluding default permissions.
+  config.exclude = [
+    { resource: 'Payment', action: 'destroy' },
+    { resource: 'Post', action: 'update' },
+  ]
+  #
+  # Including other permissions.
+  config.include = [
+    { resource: 'User', action: 'enable' },
+    { resource: 'User', action: 'disable' },
+  ]
+end
+```
+And run voltex rake task again:
+```
+bundle exec rake voltex
+```
