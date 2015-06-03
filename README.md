@@ -122,5 +122,9 @@ Rails.application.routes.draw do
   mount Voltex::Engine => '/voltex'
 end
 ```
+Run voltex views generator:
+```
+bundle exec rails g voltex:views
+```
 This will define a route `/voltex/roles/:id/edit` where
 permissions can be defined for each role.
