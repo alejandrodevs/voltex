@@ -73,11 +73,11 @@ Feature: Resources generator
       end
     end
     """
-    And the migration "_voltex_create_permission_roles.rb" should contain:
+    And the migration "_voltex_create_permissions_roles.rb" should contain:
     """
-    class VoltexCreatePermissionRoles < ActiveRecord::Migration
+    class VoltexCreatePermissionsRoles < ActiveRecord::Migration
       def change
-        create_table(:permission_roles) do |t|
+        create_table(:permissions_roles) do |t|
           t.references :permission
           t.references :role
         end

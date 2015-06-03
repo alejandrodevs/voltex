@@ -1,6 +1,6 @@
 When 'I generate a new rails application' do
   steps %{
-    When I successfully run `cp -R ../../spec/dummy #{APP_NAME}`
+    When I successfully run `cp -R ../../spec/rails_app #{APP_NAME}`
     And I cd to "#{APP_NAME}"
     And I add to Gemfile "gem 'sqlite3'"
     And I install gems

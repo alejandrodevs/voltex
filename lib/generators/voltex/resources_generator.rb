@@ -7,7 +7,7 @@ module Voltex
         Rails::Generators.invoke "#{orm}:voltex_user", [Voltex.user_class]
         Rails::Generators.invoke "#{orm}:voltex_role", [Voltex.role_class]
         Rails::Generators.invoke "#{orm}:voltex_permission", [Voltex.permission_class]
-        Rails::Generators.invoke "#{orm}:voltex_permission_role", [Voltex.permission_role_class]
+        Rails::Generators.invoke "#{orm}:voltex_permissions_role", [Voltex.permissions_role_class]
       end
 
       private

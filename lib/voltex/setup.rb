@@ -12,8 +12,9 @@ module Voltex
     mattr_accessor :permission_class
     @@permission_class = 'Permission'
 
-    def permission_role_class
-      [permission_class, role_class].sort.join
+    def permissions_role_class
+      [permission_class.pluralize,
+       role_class.pluralize].sort.join.singularize
     end
 
     mattr_accessor :exclude

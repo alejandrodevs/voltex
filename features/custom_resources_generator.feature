@@ -82,11 +82,11 @@ Feature: Custom resources generator
       end
     end
     """
-    And the migration "_voltex_create_group_permissions.rb" should contain:
+    And the migration "_voltex_create_groups_permissions.rb" should contain:
     """
-    class VoltexCreateGroupPermissions < ActiveRecord::Migration
+    class VoltexCreateGroupsPermissions < ActiveRecord::Migration
       def change
-        create_table(:group_permissions) do |t|
+        create_table(:groups_permissions) do |t|
           t.references :permission
           t.references :group
         end

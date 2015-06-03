@@ -2,6 +2,12 @@
 This engine aims to provide an easy way to work with dynamic permissions.
 
 
+## Compatibility
+* Rails 4+
+* ActiveRecord 4+
+* Ruby 2+
+
+
 ## Installation
 1. Add Voltex to your Gemfile.
 
@@ -42,3 +48,22 @@ This engine aims to provide an easy way to work with dynamic permissions.
     ```
     bundle exec rake voltex
     ```
+
+
+## Using Voltex with Pundit
+Include voltex in your application policy.
+```ruby
+require 'voltex/pundit'
+
+class ApplicationPolicy
+  include Voltex::Pundit
+end
+```
+Now a new helper is available in your policies.
+```ruby
+class PostPolicy
+  def index?
+    permission?(Post, :index)
+  end
+end
+```

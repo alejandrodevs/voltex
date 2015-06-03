@@ -3,9 +3,9 @@ require 'generators/active_record/voltex_generator'
 
 module ActiveRecord
   module Generators
-    class VoltexPermissionRoleGenerator < ActiveRecord::Generators::Base
+    class VoltexPermissionsRoleGenerator < ActiveRecord::Generators::Base
       include VoltexGenerator
-      source_root File.expand_path('../templates/permission_role', __FILE__)
+      source_root File.expand_path('../templates/permissions_role', __FILE__)
 
       def generate_model
         # There wont be a model.
