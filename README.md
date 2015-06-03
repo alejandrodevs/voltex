@@ -80,7 +80,6 @@ class Ability
 
   def initialize(user)
     define_voltex_abilities(user)
-    ...
   end
 end
 ```
