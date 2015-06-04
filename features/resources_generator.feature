@@ -42,11 +42,9 @@ Feature: Resources generator
       def change
         create_table(:users) do |t|
           t.string :name
-          t.integer :role_id
+          t.references :role
           t.timestamps null: false
         end
-
-        add_index :users, :role_id
       end
     end
     """

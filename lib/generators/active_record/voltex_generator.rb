@@ -35,7 +35,7 @@ module ActiveRecord
         end
 
         def model_path
-          File.join('app', 'models', "#{full_file_path}.rb")
+          File.join('app', 'models', "#{class_name.underscore}.rb")
         end
 
         def sanitized_content
@@ -48,10 +48,6 @@ module ActiveRecord
 
         def table_exists?
           ActiveRecord::Base.connection.table_exists? table_name
-        end
-
-        def full_file_path
-          class_name.split('::').join('/').underscore.downcase
         end
       end
     end

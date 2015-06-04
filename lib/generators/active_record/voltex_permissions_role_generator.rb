@@ -14,16 +14,6 @@ module ActiveRecord
       def add_model_content
         # There wont be a model.
       end
-
-      private
-
-      def permission
-        Voltex.permission_class.underscore.parameterize('_')
-      end
-
-      def role
-        Voltex.role_class.underscore.parameterize('_')
-      end
     end
   end
 end

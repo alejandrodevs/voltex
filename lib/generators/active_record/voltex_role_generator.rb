@@ -9,19 +9,15 @@ module ActiveRecord
 
       private
 
+      def existing_migration
+        # There won't be a existing migration.
+      end
+
       def model_content
         "# Voltex.
          # Please review the following content.
-         has_many :#{users}
-         has_and_belongs_to_many :#{permissions}"
-      end
-
-      def users
-        Voltex.user_class.underscore.parameterize('_').pluralize
-      end
-
-      def permissions
-        Voltex.permission_class.underscore.parameterize('_').pluralize
+         has_many :#{Voltex.users_name}
+         has_and_belongs_to_many :#{Voltex.permissions_name}"
       end
     end
   end

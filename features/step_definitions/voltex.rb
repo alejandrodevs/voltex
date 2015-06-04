@@ -50,9 +50,9 @@ end
 When /^I have (not )?"([^\"]+)" permissions for "([^\"]+)"$/ do |match, actions, resources|
   resources.split(' ').each do |resource|
     actions.split(' ').each do |action|
-      Voltex.permission_class.constantize.where(
+      expect(Voltex.permission_class.constantize.where(
         resource: resource, action: action
-      ).exists?.should be !match
+      ).exists?).to be !match
     end
   end
 end

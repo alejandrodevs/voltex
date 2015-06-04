@@ -1,7 +1,7 @@
 module Voltex
   module Setup
-    mattr_accessor :actions
-    @@actions = %w(index show create update destroy)
+    mattr_accessor :default_actions
+    @@default_actions = %w(index show create update destroy)
 
     mattr_accessor :user_class
     @@user_class = 'User'
@@ -12,16 +12,29 @@ module Voltex
     mattr_accessor :permission_class
     @@permission_class = 'Permission'
 
-    def permissions_role_class
-      [permission_class.pluralize,
-       role_class.pluralize].sort.join.singularize
-    end
-
     mattr_accessor :exclude
     @@exclude = []
 
     mattr_accessor :include
     @@include = []
+
+    def permissions_role_class
+      [permission_class, role_class].map(&:pluralize).sort.join.singularize
+    end
+
+    %w(user role permission).each do |resource|
+      define_method "#{resource}_model" do
+        send("#{resource}_class").constantize
+      end
+
+      define_method "#{resource}_name" do
+        send("#{resource}_class").underscore.parameterize('_')
+      end
+
+      define_method "#{resource.pluralize}_name" do
+        send("#{resource}_name").pluralize
+      end
+    end
 
     def setup
       yield(self) if block_given?

@@ -51,11 +51,9 @@ Feature: Custom resources generator
       def change
         create_table(:members) do |t|
           t.string :name
-          t.integer :group_id
+          t.references :group
           t.timestamps null: false
         end
-
-        add_index :members, :group_id
       end
     end
     """
