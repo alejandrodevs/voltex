@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    voltex (0.0.1)
+    voltex (0.0.2)
       rails (~> 4.2.1)
 
 GEM
