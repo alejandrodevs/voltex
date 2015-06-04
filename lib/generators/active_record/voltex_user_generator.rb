@@ -15,14 +15,6 @@ module ActiveRecord
          belongs_to :#{Voltex.role_name}
          has_many :#{Voltex.permissions_name}, through: :#{Voltex.role_name}"
       end
-
-      def role
-        Voltex.role_name
-      end
-
-      def permissions
-        Voltex.permission_name.pluralize
-      end
     end
   end
 end
