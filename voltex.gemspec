@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.files       = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '~> 4.2.1'
+  s.add_dependency 'rails'
+  s.add_dependency 'request_store', '~> 1.1.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails', '~> 3.2'
   s.add_development_dependency 'cucumber', '~> 2.0.0'

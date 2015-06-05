@@ -11,7 +11,7 @@ module Voltex
     # PUT /voltex/roles/1
     def update
       if @resource.update(resource_params)
-        redirect_to @resource, notice: t('.notice', default: update_message)
+        redirect_to [main_app, @resource], notice: t('.notice', default: update_message)
       else
         render :edit
       end

@@ -20,6 +20,7 @@ RSpec.describe Voltex::CanCan::Ability do
     role.permissions << perm
     user.role = role
     user.save
+    Voltex.current_permissions = [perm]
   end
 
   subject { Ability.new(user) }

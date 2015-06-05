@@ -20,6 +20,7 @@ RSpec.describe Voltex::Pundit do
     role.permissions << perm
     user.role = role
     user.save
+    Voltex.current_permissions = [perm]
   end
 
   subject { ApplicationPolicy.new(user, role) }

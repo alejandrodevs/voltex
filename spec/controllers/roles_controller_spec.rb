@@ -39,7 +39,7 @@ RSpec.describe Voltex::RolesController do
       end
 
       it 'redirects to resource' do
-        expect(response).to redirect_to role
+        expect(response).to redirect_to "/roles/#{role.id}"
       end
     end
   end

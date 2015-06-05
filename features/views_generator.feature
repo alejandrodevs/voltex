@@ -15,7 +15,7 @@ Feature: Views generator
     """
     <h2>Defining Role Permissions</h2>
 
-    <%= form_for @resource, as: Voltex.role_name, url: role_path(@resource) do |f| %>
+    <%= form_for @resource, as: Voltex.role_name, url: voltex.role_path(@resource) do |f| %>
       <% Voltex.permission_model.select(:resource).group(:resource).each do |permission| %>
         <h5><%= permission.resource.pluralize %></h5>
         <%= f.collection_check_boxes("#{Voltex.permission_name}_ids",

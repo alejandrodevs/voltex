@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-
-  mount Voltex::Engine => "/voltex"
+  resources :roles
+  mount Voltex::Engine => '/voltex'
 end

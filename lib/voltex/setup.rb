@@ -18,6 +18,15 @@ module Voltex
     mattr_accessor :include
     @@include = []
 
+
+    def current_permissions=(permissions)
+      RequestStore.store[:current_permissions] = permissions
+    end
+
+    def current_permissions
+      RequestStore.store[:current_permissions] || []
+    end
+
     def permissions_role_class
       [permission_class, role_class].map(&:pluralize).sort.join.singularize
     end
