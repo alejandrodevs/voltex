@@ -2,19 +2,16 @@ module Voltex
   module Scope
     extend ActiveSupport::Concern
 
-    included do
-      before_action :set_current_permissions
-    end
-
     protected
 
     def set_current_permissions
-      return unless defined?(current_user)
-      Voltex.current_permissions = current_permissions
+      return unless voltex_user || voltex_user.respond_to?(Voltex.permissions_name)
+      Voltex.current_permissions = voltex_user.send(Voltex.permissions_name).to_a
     end
 
-    def current_permissions
-      current_user.send(Voltex.permissions_name).to_a
+    def voltex_user
+      return unless defined?(current_user)
+      current_user
     end
   end
 end
