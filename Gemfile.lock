@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    voltex (0.0.3)
+    voltex (0.0.4)
       rails
       request_store (~> 1.1.0)
 
