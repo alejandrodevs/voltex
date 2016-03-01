@@ -53,12 +53,27 @@ This engine aims to provide an easy way to work with dynamic permissions.
 
 7. Load current user permissions in your application controller.
 
-    ```
+    ```ruby
     class ApplicationController < ActionController::Base
       ...
       before_action :set_current_permissions
     end
     ```
+
+By default this callback preloads permissions for `current_user` if this
+is defined. If you need that this callback preloads permission for
+another user just overwrite `voltex_user` method.
+
+Example:
+```ruby
+class ApplicationController < ActionController::Base
+  ...
+  def voltex_user
+    # Default is current_user.
+    another_awesome_user
+  end
+end
+```
 
 
 ## Using Voltex with Pundit
