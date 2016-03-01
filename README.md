@@ -51,6 +51,15 @@ This engine aims to provide an easy way to work with dynamic permissions.
     bundle exec rake voltex
     ```
 
+7. Load current user permissions in your application controller.
+
+    ```
+    class ApplicationController < ActionController::Base
+      ...
+      before_action :set_current_permissions
+    end
+    ```
+
 
 ## Using Voltex with Pundit
 Include voltex in your application policy.
