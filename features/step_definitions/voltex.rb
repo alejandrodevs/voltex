@@ -2,47 +2,31 @@ When 'I generate a new rails application' do
   steps %{
     When I successfully run `cp -R ../../spec/rails_app #{APP_NAME}`
     And I cd to "#{APP_NAME}"
-    And I add to Gemfile "gem 'sqlite3'"
-    And I install gems
+    And I append to "Gemfile" with "gem 'sqlite3'"
+    And I append to "Gemfile" with "gem 'voltex', path: '#{VOLTEX_ROOT}'"
+    And I successfully run `bundle install --local`
   }
 
-  $LOAD_PATH.unshift(File.join(APP_ROOT))
-  require File.expand_path(APP_ROOT + '/config/environment', __FILE__)
+  ENV['RAILS_ENV'] ||= 'test'
+  require File.expand_path("#{APP_ROOT}/config/environment.rb",  __FILE__)
+  ENV['RAILS_ROOT'] ||= APP_ROOT
 end
 
-When /^I configure the application to use voltex$/ do
-  steps %{
-    And I add to Gemfile "gem 'voltex', path: '#{VOLTEX_ROOT}'"
-    And I install gems
-  }
+When /^the model(?: named)? "([^"]*)" should (not )?contain:$/ do |model, negated, content|
+  file = Dir["#{APP_ROOT}/app/models/*#{model.downcase}.rb"].first.split("#{APP_NAME}/").last
+  expect(file).to have_file_content file_content_including(content.chomp)
 end
 
-When /^I install gems$/ do
-  steps %{When I successfully run `bundle install --local`}
+When /^the migration(?: named)? "([^"]*)" should (not )?contain:$/ do |migration, negated, content|
+  file = Dir["#{APP_ROOT}/db/migrate/*#{migration}.rb"].first.split("#{APP_NAME}/").last
+  expect(file).to have_file_content file_content_including(content.chomp)
 end
 
-When /^I add to Gemfile "([^"]*)"$/ do |content|
-  append_to_file('Gemfile', "\n" + content)
-end
-
-When /^the migration "([^"]*)" should (not )?contain:$/ do |file, expect_match, partial_content|
-  file = Dir["#{APP_ROOT}/db/migrate/*#{file}"].first
-  check_file_content(file, Regexp.compile(Regexp.escape(partial_content)), !expect_match)
-end
-
-When /^the model "([^"]*)" should (not )?contain:$/ do |file, expect_match, partial_content|
-  file = Dir["#{APP_ROOT}/app/models/#{file}"].first
-  check_file_content(file, Regexp.compile(Regexp.escape(partial_content)), !expect_match)
-end
-
-When /^I generate models named "([^\"]+)"$/ do |models|
+When /^I generate models "([^\"]+)"$/ do |models|
   models.split(' ').each do |model|
     steps %{
-      When I write to "#{APP_ROOT}/app/models/#{model.downcase}.rb" with:
-      """
-      class #{model} < ActiveRecord::Base
-      end
-      """
+      When I write to "app/models/#{model.downcase}.rb" with:
+        """\nclass #{model} < ActiveRecord::Base\nend\n"""
     }
   end
 end

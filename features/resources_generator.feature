@@ -5,80 +5,79 @@ Feature: Resources generator
 
   Background:
     When I generate a new rails application
-    And I configure the application to use voltex
     And I successfully run `bundle exec rails g voltex:install`
 
   Scenario: Creates default voltex resources
     When I successfully run `bundle exec rails g voltex:resources`
-    Then the model "user.rb" should contain:
-    """
-    class User < ActiveRecord::Base
-      # Voltex.
-      # Please review the following content.
-      belongs_to :role
-      has_many :permissions, through: :role
-    end
-    """
-    And the model "role.rb" should contain:
-    """
-    class Role < ActiveRecord::Base
-      # Voltex.
-      # Please review the following content.
-      has_many :users
-      has_and_belongs_to_many :permissions
-    end
-    """
-    And the model "permission.rb" should contain:
-    """
-    class Permission < ActiveRecord::Base
-      # Voltex.
-      # Please review the following content.
-      has_and_belongs_to_many :roles
-    end
-    """
-    And the migration "_voltex_create_users.rb" should contain:
-    """
-    class VoltexCreateUsers < ActiveRecord::Migration
-      def change
-        create_table(:users) do |t|
-          t.string :name
-          t.references :role
-          t.timestamps null: false
+    Then the model "User" should contain:
+      """
+      class User < ActiveRecord::Base
+        # Voltex.
+        # Please review the following content.
+        belongs_to :role
+        has_many :permissions, through: :role
+      end
+      """
+    And the model "Role" should contain:
+      """
+      class Role < ActiveRecord::Base
+        # Voltex.
+        # Please review the following content.
+        has_many :users
+        has_and_belongs_to_many :permissions
+      end
+      """
+    And the model "Permission" should contain:
+      """
+      class Permission < ActiveRecord::Base
+        # Voltex.
+        # Please review the following content.
+        has_and_belongs_to_many :roles
+      end
+      """
+    And the migration "voltex_create_users" should contain:
+      """
+      class VoltexCreateUsers < ActiveRecord::Migration
+        def change
+          create_table(:users) do |t|
+            t.string :name
+            t.references :role
+            t.timestamps null: false
+          end
         end
       end
-    end
-    """
-    And the migration "_voltex_create_roles.rb" should contain:
-    """
-    class VoltexCreateRoles < ActiveRecord::Migration
-      def change
-        create_table(:roles) do |t|
-          t.string :name
-          t.timestamps null: false
+      """
+    And the migration "voltex_create_roles" should contain:
+      """
+      class VoltexCreateRoles < ActiveRecord::Migration
+        def change
+          create_table(:roles) do |t|
+            t.string :name
+            t.timestamps null: false
+          end
         end
       end
-    end
-    """
-    And the migration "_voltex_create_permissions.rb" should contain:
-    """
-    class VoltexCreatePermissions < ActiveRecord::Migration
-      def change
-        create_table(:permissions) do |t|
-          t.string :resource
-          t.string :action
-          t.timestamps null: false
+      """
+    And the migration "voltex_create_permissions" should contain:
+      """
+      class VoltexCreatePermissions < ActiveRecord::Migration
+        def change
+          create_table(:permissions) do |t|
+            t.string :resource
+            t.string :action
+            t.timestamps null: false
+          end
         end
       end
-    end
-    """
-    And the migration "_voltex_create_permissions_roles.rb" should contain:
-    """
-    class VoltexCreatePermissionsRoles < ActiveRecord::Migration
-      def change
-        create_table(:permissions_roles) do |t|
-          t.references :permission
-          t.references :role
+      """
+    And the migration "voltex_create_permissions_roles" should contain:
+      """
+      class VoltexCreatePermissionsRoles < ActiveRecord::Migration
+        def change
+          create_table(:permissions_roles) do |t|
+            t.references :permission
+            t.references :role
+          end
         end
       end
-    end
-    """
+      """
