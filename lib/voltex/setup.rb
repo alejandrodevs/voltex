@@ -37,7 +37,7 @@ module Voltex
       end
 
       define_method "#{resource}_name" do
-        send("#{resource}_class").underscore.parameterize('_')
+        send("#{resource}_class").underscore.parameterize(separator: '_')
       end
 
       define_method "#{resource.pluralize}_name" do
