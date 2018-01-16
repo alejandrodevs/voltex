@@ -5,6 +5,7 @@ module ActiveRecord
   module Generators
     class VoltexPermissionsRoleGenerator < ActiveRecord::Generators::Base
       include VoltexGenerator
+
       source_root File.expand_path('../templates/permissions_role', __FILE__)
 
       def generate_model

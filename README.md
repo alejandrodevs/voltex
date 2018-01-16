@@ -2,69 +2,64 @@
 This engine aims to provide an easy way to work with dynamic permissions.
 
 
-## Compatibility
-* Rails 4+
-* ActiveRecord 4+
-* Ruby 2+
-
-
 ## Installation
 1. Add Voltex to your Gemfile.
 
-    ```ruby
-    gem 'voltex'
-    ```
+```ruby
+gem 'voltex'
+```
 
 2. Generate voltex initializer.
 
-    ```
-    bundle exec rails g voltex:install
-    ```
+```
+rails g voltex:install
+```
 
 3. Update initializer according your needs.
 
-    ```ruby
-    Voltex.setup do |config|
-      # Voltex classes configuration.
-      # config.user_class = 'User'
-      # config.role_class = 'Role'
-      # config.permission_class = 'Permission'
-      ...
-    end
-    ```
+```ruby
+Voltex.setup do |config|
+  # Voltex classes configuration.
+  # config.user_class = 'User'
+  # config.role_class = 'Role'
+  # config.permission_class = 'Permission'
+  ...
+end
+```
 
 4. Generate voltex resources.
 
-    ```
-    bundle exec rails g voltex:resources
-    ```
+```
+rails g voltex:resources
+```
 
 5. Migrate your database.
 
-    ```
-    bundle exec rake db:migrate
-    ```
+```
+rails db:migrate
+```
 
 6. Create default permissions.
 
-    ```
-    bundle exec rake voltex
-    ```
+```
+rake voltex
+```
 
 7. Load current user permissions in your application controller.
 
-    ```ruby
-    class ApplicationController < ActionController::Base
-      ...
-      before_action :set_current_permissions
-    end
-    ```
+```ruby
+class ApplicationController < ActionController::Base
+  ...
+  before_action :set_current_permissions
+end
+```
 
 By default this callback preloads permissions for `current_user` if this
 is defined. If you need that this callback preloads permission for
 another user just overwrite `voltex_user` method.
 
 Example:
+
 ```ruby
 class ApplicationController < ActionController::Base
   ...
@@ -78,6 +73,7 @@ end
 
 ## Using Voltex with Pundit
 Include voltex in your application policy.
+
 ```ruby
 require 'voltex/pundit'
 
@@ -85,7 +81,9 @@ class ApplicationPolicy
   include Voltex::Pundit
 end
 ```
+
 Now a new helper is available in your policies.
+
 ```ruby
 class PostPolicy
   def index?
@@ -97,12 +95,13 @@ end
 
 ## Using Voltex with CanCan
 Include voltex in your ability class.
+
 ```ruby
-require 'voltex/cancan/ability'
+require 'voltex/cancan'
 
 class Ability
   include CanCan::Ability
-  include Voltex::CanCan::Ability
+  include Voltex::CanCan
 
   def initialize(user)
     define_voltex_abilities(user)
@@ -113,6 +112,7 @@ end
 
 ## Including and Excluding permissions
 Update your voltex initializer:
+
 ```ruby
 Voltex.setup do |config|
   # Voltex classes configuration.
@@ -133,22 +133,28 @@ Voltex.setup do |config|
   ]
 end
 ```
+
 And run voltex rake task again:
+
 ```
-bundle exec rake voltex
+rake voltex
 ```
 
 
 ## Defining role permissions
 Mount voltex engine in your application:
+
 ```ruby
 Rails.application.routes.draw do
   mount Voltex::Engine => '/voltex'
 end
 ```
+
 Run voltex views generator:
+
 ```
-bundle exec rails g voltex:views
+rails g voltex:views
 ```
+
 This will define a route `/voltex/roles/:id/edit` where
 permissions can be defined for each role.
