@@ -5,7 +5,7 @@ Feature: Custom resources generator
 
   Background:
     When I generate a new rails application
-    And I successfully run `bundle exec rails g voltex:install`
+    And I run `bundle exec rails g voltex:install`
 
   Scenario: Creates custom voltex resources
     Given a file named "config/initializers/voltex.rb" with:
@@ -17,7 +17,7 @@ Feature: Custom resources generator
         # config.permission_class = 'Permission'
       end
       """
-    And I successfully run `bundle exec rails g voltex:resources`
+    And I run `bundle exec rails g voltex:resources`
     Then the model "Member" should contain:
       """
       class Member < ActiveRecord::Base

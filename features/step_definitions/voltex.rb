@@ -1,10 +1,13 @@
 When 'I generate a new rails application' do
   steps %{
-    When I successfully run `cp -R ../../spec/rails_app #{APP_NAME}`
+    When I run `cp -R ../../spec/rails_app #{APP_NAME}`
     And I cd to "#{APP_NAME}"
-    And I append to "Gemfile" with "gem 'sqlite3'"
-    And I append to "Gemfile" with "gem 'voltex', path: '#{VOLTEX_ROOT}'"
-    And I successfully run `bundle install --local`
+    And I append to "Gemfile" with:
+      """
+      gem 'sqlite3'
+      gem 'voltex', path: '#{VOLTEX_ROOT}'
+      """
+    And I run `bundle install --local`
   }
 
   ENV['RAILS_ENV'] ||= 'test'
