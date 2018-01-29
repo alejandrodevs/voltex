@@ -5,13 +5,13 @@ Feature: Resources generator
 
   Background:
     When I generate a new rails application
-    And I successfully run `bundle exec rails g voltex:install`
+    And I run `bundle exec rails g voltex:install`
 
   Scenario: Creates default voltex resources
-    When I successfully run `bundle exec rails g voltex:resources`
+    When I run `bundle exec rails g voltex:resources`
     Then the model "User" should contain:
       """
-      class User < ActiveRecord::Base
+      class User < ApplicationRecord
         # Voltex.
         # Please review the following content.
         belongs_to :role
@@ -20,7 +20,7 @@ Feature: Resources generator
       """
     And the model "Role" should contain:
       """
-      class Role < ActiveRecord::Base
+      class Role < ApplicationRecord
         # Voltex.
         # Please review the following content.
         has_many :users
@@ -29,7 +29,7 @@ Feature: Resources generator
       """
     And the model "Permission" should contain:
       """
-      class Permission < ActiveRecord::Base
+      class Permission < ApplicationRecord
         # Voltex.
         # Please review the following content.
         has_and_belongs_to_many :roles
@@ -37,7 +37,7 @@ Feature: Resources generator
       """
     And the migration "voltex_create_users" should contain:
       """
-      class VoltexCreateUsers < ActiveRecord::Migration
+      class VoltexCreateUsers < ActiveRecord::Migration[5.1]
         def change
           create_table(:users) do |t|
             t.string :name
@@ -49,7 +49,7 @@ Feature: Resources generator
       """
     And the migration "voltex_create_roles" should contain:
       """
-      class VoltexCreateRoles < ActiveRecord::Migration
+      class VoltexCreateRoles < ActiveRecord::Migration[5.1]
         def change
           create_table(:roles) do |t|
             t.string :name
@@ -60,7 +60,7 @@ Feature: Resources generator
       """
     And the migration "voltex_create_permissions" should contain:
       """
-      class VoltexCreatePermissions < ActiveRecord::Migration
+      class VoltexCreatePermissions < ActiveRecord::Migration[5.1]
         def change
           create_table(:permissions) do |t|
             t.string :resource
@@ -72,7 +72,7 @@ Feature: Resources generator
       """
     And the migration "voltex_create_permissions_roles" should contain:
       """
-      class VoltexCreatePermissionsRoles < ActiveRecord::Migration
+      class VoltexCreatePermissionsRoles < ActiveRecord::Migration[5.1]
         def change
           create_table(:permissions_roles) do |t|
             t.references :permission

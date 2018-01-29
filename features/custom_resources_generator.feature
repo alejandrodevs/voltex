@@ -20,7 +20,7 @@ Feature: Custom resources generator
     And I run `bundle exec rails g voltex:resources`
     Then the model "Member" should contain:
       """
-      class Member < ActiveRecord::Base
+      class Member < ApplicationRecord
         # Voltex.
         # Please review the following content.
         belongs_to :group
@@ -29,7 +29,7 @@ Feature: Custom resources generator
       """
     And the model "Group" should contain:
       """
-      class Group < ActiveRecord::Base
+      class Group < ApplicationRecord
         # Voltex.
         # Please review the following content.
         has_many :members
@@ -38,7 +38,7 @@ Feature: Custom resources generator
       """
     And the model "Permission" should contain:
       """
-      class Permission < ActiveRecord::Base
+      class Permission < ApplicationRecord
         # Voltex.
         # Please review the following content.
         has_and_belongs_to_many :groups
@@ -46,7 +46,7 @@ Feature: Custom resources generator
       """
     And the migration "voltex_create_members" should contain:
       """
-      class VoltexCreateMembers < ActiveRecord::Migration
+      class VoltexCreateMembers < ActiveRecord::Migration[5.1]
         def change
           create_table(:members) do |t|
             t.string :name
@@ -58,7 +58,7 @@ Feature: Custom resources generator
       """
     And the migration "voltex_create_groups" should contain:
       """
-      class VoltexCreateGroups < ActiveRecord::Migration
+      class VoltexCreateGroups < ActiveRecord::Migration[5.1]
         def change
           create_table(:groups) do |t|
             t.string :name
@@ -69,7 +69,7 @@ Feature: Custom resources generator
       """
     And the migration "voltex_create_permissions" should contain:
       """
-      class VoltexCreatePermissions < ActiveRecord::Migration
+      class VoltexCreatePermissions < ActiveRecord::Migration[5.1]
         def change
           create_table(:permissions) do |t|
             t.string :resource
@@ -81,7 +81,7 @@ Feature: Custom resources generator
       """
     And the migration "voltex_create_groups_permissions" should contain:
       """
-      class VoltexCreateGroupsPermissions < ActiveRecord::Migration
+      class VoltexCreateGroupsPermissions < ActiveRecord::Migration[5.1]
         def change
           create_table(:groups_permissions) do |t|
             t.references :permission

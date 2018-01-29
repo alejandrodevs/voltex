@@ -4,9 +4,9 @@ Feature: Exclude default permissions
 
   Background:
     When I generate a new rails application
-    And I successfully run `bundle exec rails g voltex:install`
-    And I successfully run `bundle exec rails g voltex:resources`
-    And I successfully run `bundle exec rake db:migrate`
+    And I run `bundle exec rails g voltex:install`
+    And I run `bundle exec rails g voltex:resources`
+    And I run `bundle exec rake db:migrate`
 
   Scenario: Exclude permissions
     Given a file named "config/initializers/voltex.rb" with:
@@ -24,6 +24,6 @@ Feature: Exclude default permissions
       end
       """
     And I generate models "Post Product"
-    When I successfully run `bundle exec rake voltex`
+    When I run `bundle exec rake voltex`
     Then I have not "update" permissions for "Post"
     And I have not "index show create update destroy" permissions for "Product"

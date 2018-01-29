@@ -49,6 +49,12 @@ module ActiveRecord
         def table_exists?
           ActiveRecord::Base.connection.table_exists? table_name
         end
+
+        def migration_class_name
+          Rails.version.to_i == 5 ?
+            "ActiveRecord::Migration[#{ActiveRecord::Migration.current_version}]":
+            'ActiveRecord::Migration'
+        end
       end
     end
   end

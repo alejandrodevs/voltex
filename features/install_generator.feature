@@ -6,7 +6,7 @@ Feature: Install generator
     When I generate a new rails application
 
   Scenario: Creates voltex initializer
-    When I successfully run `bundle exec rails g voltex:install`
+    When I run `bundle exec rails g voltex:install`
     Then the file "config/initializers/voltex.rb" should contain:
       """
       Voltex.setup do |config|

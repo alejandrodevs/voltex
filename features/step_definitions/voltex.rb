@@ -1,6 +1,26 @@
 When 'I generate a new rails application' do
   steps %{
-    When I run `cp -R ../../spec/rails_app #{APP_NAME}`
+    When I run `rails plugin new dummy`
+    When I run `mv dummy/test/dummy #{APP_NAME}`
+    When I overwrite the file named "#{APP_NAME}/config/application.rb" with:
+      """
+      require_relative 'boot'
+
+      require 'rails/all'
+
+      Bundler.require(*Rails.groups)
+
+      module Dummy
+        class Application < Rails::Application
+          # Initialize configuration defaults for originally generated Rails version.
+          config.load_defaults 5.1
+
+          # Settings in config/environments/* take precedence over those specified here.
+          # Application configuration should go into files in config/initializers
+          # -- all .rb files in that directory are automatically loaded.
+        end
+      end
+      """
     And I cd to "#{APP_NAME}"
     And I append to "Gemfile" with:
       """

@@ -4,9 +4,9 @@ Feature: Include not default permissions
 
   Background:
     When I generate a new rails application
-    And I successfully run `bundle exec rails g voltex:install`
-    And I successfully run `bundle exec rails g voltex:resources`
-    And I successfully run `bundle exec rake db:migrate`
+    And I run `bundle exec rails g voltex:install`
+    And I run `bundle exec rails g voltex:resources`
+    And I run `bundle exec rake db:migrate`
 
   Scenario: Include permissions
     Given a file named "config/initializers/voltex.rb" with:
@@ -24,6 +24,6 @@ Feature: Include not default permissions
       end
       """
     And I generate models "Member Payment"
-    When I successfully run `bundle exec rake voltex`
+    When I run `bundle exec rake voltex`
     Then I have "enable" permissions for "Member"
     And I have "cancel" permissions for "Payment"

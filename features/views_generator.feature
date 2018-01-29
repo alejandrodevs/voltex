@@ -4,12 +4,12 @@ Feature: Views generator
 
   Background:
     When I generate a new rails application
-    And I successfully run `bundle exec rails g voltex:install`
-    And I successfully run `bundle exec rails g voltex:resources`
-    And I successfully run `bundle exec rake db:migrate`
+    And I run `bundle exec rails g voltex:install`
+    And I run `bundle exec rails g voltex:resources`
+    And I run `bundle exec rake db:migrate`
 
   Scenario: Creates view to configure role permissions
-    When I successfully run `bundle exec rails g voltex:views`
+    When I run `bundle exec rails g voltex:views`
     Then the file "app/views/voltex/roles/edit.html.erb" should contain:
       """
       <h2>Defining Role Permissions</h2>
