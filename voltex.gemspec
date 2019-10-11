@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'activerecord', '>= 4.2'
   s.add_dependency 'request_store', '~> 1.3'
 
-  s.add_development_dependency 'sqlite3', '~> 1.3'
-  s.add_development_dependency 'rspec-rails', '~> 3.7'
-  s.add_development_dependency 'cucumber', '~> 3.1'
   s.add_development_dependency 'aruba', '~> 0.14'
   s.add_development_dependency 'cancan', '~> 1.6'
+  s.add_development_dependency 'sqlite3', '~> 1.4'
+  s.add_development_dependency 'cucumber', '~> 3.1'
+  s.add_development_dependency 'rspec-rails', '~> 3.9'
 end
