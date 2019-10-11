@@ -1,12 +1,15 @@
 desc 'Creates default permissions'
 task voltex: :environment do
   Rails.application.eager_load!
+  Zeitwerk::Loader.eager_load_all if defined?(Zeitwerk)
+  base_class = ApplicationRecord rescue ActiveRecord::Base
 
-  ActiveRecord::Base.descendants.each do |descendant|
+  base_class.descendants.each do |descendant|
     Voltex.default_actions.each do |action|
       Voltex.permission_model.where(
         resource: descendant.name,
-        action: action).first_or_create
+        action: action
+      ).first_or_create
     end
   end
 
