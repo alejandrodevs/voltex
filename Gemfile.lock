@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    voltex (0.0.8)
+    voltex (0.1.0)
       activerecord (>= 4.2)
       rails (>= 4.2)
       request_store (~> 1.3)
